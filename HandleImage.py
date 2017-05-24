@@ -50,7 +50,6 @@ class HandleImage:
         im = Image.open(self.Fname)
         imgFile = im.filter(ImageFilter.CONTOUR)
         imgFile.save("C:/output_pictures/" + FileNameT )
-       # imgFile.show()
    def addBorder(self, borderColor):
        "add border to the images"
        DirName, FileName = os.path.split(os.path.abspath(self.Fname))
@@ -59,7 +58,6 @@ class HandleImage:
        im = Image.open(self.Fname)
        image_bordered = ImageOps.expand(im,border=150,fill=borderColor)
        image_bordered.save("C:/output_pictures/"+FileNameT)
-       #image_bordered.show()
    def addTextToPic(self, TexttoAdd, TextColor, Text_Pos = (10,10), TextFontName = "arial.ttf", TextFontSize = 10):
        "add text to the image"
        TextFont = ImageFont.truetype(TextFontName,TextFontSize)
@@ -71,7 +69,15 @@ class HandleImage:
        draw = ImageDraw.Draw(img)
        draw.text(Text_Pos, TexttoAdd, fill=TextColor, font=TextFont)
        img.save("C:/output_pictures/"+FileNameT)
-       #img.show()
+   def blendImage(self):
+       "blend same image by rotating"
+       DirName, FileName = os.path.split(os.path.abspath(self.Fname))
+       FileName, FileExt = os.path.splitext(FileName)
+       FileNameT = FileName + "_Blended"+ FileExt             
+       im = Image.open(self.Fname)
+       img = im.rotate(180)
+       img_blend = Image.blend(im, img, 0.5)
+       img_blend.save("C:/output_pictures/"+FileNameT)       
 
        
     

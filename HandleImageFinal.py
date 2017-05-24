@@ -15,6 +15,7 @@ for i  in range(len(img_list)):
     Img.addBorder('Red')
     Img.contourImageSupplied()
     Img.addTextToPic("Photos for Demo", "Red", (105,105), "arial.ttf", 22)
+    Img.blendImage()
     
 
     
